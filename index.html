@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Countdown</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn-icons-png.flaticon.com/512/5307/5307639.png"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .countdown {
+        font-size: 2rem;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 600px) {
+        .countdown {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Countdown to Mahesh & Sapna's Wedding</h1>
+      <div class="countdown" id="countdown"></div>
+    </div>
+
+    <script>
+      // Wedding date
+      const weddingDate = new Date("2024-04-18T00:00:00+05:30");
+
+      // Update countdown every second
+      setInterval(updateCountdown, 1000);
+
+      function updateCountdown() {
+        const now = new Date();
+        const difference = weddingDate - now;
+
+        if (difference <= 0) {
+          document.getElementById("countdown").innerHTML =
+            "Congratulations! The wedding is here!";
+        } else {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (difference % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+          document.getElementById(
+            "countdown"
+          ).innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+      }
+    </script>
+  </body>
+</html>
